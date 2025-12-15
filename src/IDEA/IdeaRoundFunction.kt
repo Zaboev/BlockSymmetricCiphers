@@ -15,9 +15,7 @@ class IdeaRoundFunction : IRoundFunction<IntArray> {
 
     override suspend fun encryptionTransformation(block: ByteArray, roundKey: IntArray): ByteArray {
 
-        fun getWord(i: Int) =
-            ((block[i].toInt() and 0xFF) shl 8) or
-                    (block[i + 1].toInt() and 0xFF)
+        fun getWord(i: Int) = ((block[i].toInt() and 0xFF) shl 8) or (block[i + 1].toInt() and 0xFF)
 
         fun putWord(i: Int, v: Int) {
             block[i] = (v ushr 8).toByte()

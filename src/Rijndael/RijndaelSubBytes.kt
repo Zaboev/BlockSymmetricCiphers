@@ -59,10 +59,9 @@ class RijndaelSubBytes(private val endian: Endian) {
 
     private fun gf256Inverse(x: Int): Int {
 
-        if (x == 0) return 0
-        var y = x
-        repeat(253) { y = gf256Mul(y, x) }
-        return y
+        val a = x and 0xFF
+        if (a == 0) return 0
+        return gf256Pow(a,254)
 
     }
 
@@ -109,5 +108,21 @@ class RijndaelSubBytes(private val endian: Endian) {
         return out
 
     }
+
+    private fun gf256Pow(aIn: Int, expIn: Int): Int {
+
+        var a = aIn and 0xFF
+        var e = expIn
+        var res = 1
+        while (e != 0) {
+
+            if ((e and 1) != 0) res = gf256Mul(res, a)
+            a = gf256Mul(a, a)
+            e = e ushr 1
+        }
+        return res and 0xFF
+
+    }
+
 
 }

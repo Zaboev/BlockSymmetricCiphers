@@ -51,6 +51,5 @@ object DiffieHellman {
 
     }
 
-    fun hexPrefix(bytes: ByteArray, n: Int = 16): String =
-        bytes.take(n).joinToString("") { "%02x".format(it) }
+    fun hexPrefix(bytes: ByteArray, n: Int = 16): String = bytes.take(n).joinToString("") { "%02x".format(it) }
 }

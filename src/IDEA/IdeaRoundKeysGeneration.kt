@@ -28,9 +28,7 @@ class IdeaRoundKeysGenerator : IRoundKeysGenerator<ByteArray, IntArray> {
         var idx = 0
 
         while (j < 8) {
-            EK[j] =
-                ((userKey[idx].toInt() and 0xFF) shl 8) or
-                        (userKey[idx + 1].toInt() and 0xFF)
+            EK[j] = ((userKey[idx].toInt() and 0xFF) shl 8) or (userKey[idx + 1].toInt() and 0xFF)
             idx += 2
             j++
         }
